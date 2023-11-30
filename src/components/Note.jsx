@@ -111,23 +111,37 @@ function Note() {
             variant="outlined"
             sx={{ my: "1rem" }}
           >
-            Open
+            Add New Note
           </Button>
           <Grid
             container
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 1, md: 1 }}
           >
-            {state.notes?.map((note) => (
-              <NoteItems
-                key={note._id}
-                note={note}
-                handleOpenDelete={handleOpenDelete}
-                handleOpenUpdate={handleOpenUpdate}
-                prevData={prevData}
-                setId={setId}
-              />
-            ))}
+            {state.notes.length > 0 ? (
+              state.notes?.map((note) => (
+                <NoteItems
+                  key={note._id}
+                  note={note}
+                  handleOpenDelete={handleOpenDelete}
+                  handleOpenUpdate={handleOpenUpdate}
+                  prevData={prevData}
+                  setId={setId}
+                />
+              ))
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                  fontSize: "50px",
+                }}
+                component="h2"
+              >
+                No Notes Found
+              </Box>
+            )}
           </Grid>
         </>
       )}
